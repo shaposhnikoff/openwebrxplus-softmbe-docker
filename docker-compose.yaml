@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  openwebrx:
+    build: .
+    container_name: openwebrx
+    hostname: openwebrx
+    restart: always
+    volumes:
+      - ./openwebrx/data:/var/lib/openwebrx
+      - ./openwebrx/config:/etc/openwebrx
+      - ./openwebrx/plugins:/opt/openwebrx/htdocs/plugins
+      - /dev:/dev:rwm
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - type: tmpfs
+        target: /tmp
+        tmpfs:
+          mode: 01777
