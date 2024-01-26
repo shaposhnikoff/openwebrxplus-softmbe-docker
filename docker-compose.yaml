@@ -5,6 +5,11 @@ services:
     container_name: openwebrx
     hostname: openwebrx
     restart: always
+    cap_add:
+      - "SYS_RAWIO"
+      - "SYS_ADMIN"
+      - "SYS_RESOURCE"
+      - "SYS_MODULE"
     volumes:
       - ./openwebrx/data:/var/lib/openwebrx
       - ./openwebrx/config:/etc/openwebrx
@@ -16,3 +21,8 @@ services:
         target: /tmp
         tmpfs:
           mode: 01777
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    ports:
+      - 8073:8073
+
